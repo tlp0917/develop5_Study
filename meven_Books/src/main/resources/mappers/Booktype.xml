@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指定命名空间,一定要指定-->
+<!--namespace用来引用和dao的映射关系-->
+<mapper namespace="com.ck.entity.entity.dao.IBooktypeDao">
+
+</mapper>

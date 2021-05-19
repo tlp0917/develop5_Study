@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration用来配置数据库的相关信息-->
+<configuration>
+
+	<settings>
+		<!--设置mybatis执行过程中显示sql语句在控制台-->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+		<!--设置mybatis开启延迟加载功能-->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 设置加载行为为消极加载 -->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<!--开启二级缓存-->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+
+	<!--配置连接数据库的相关信息-->
+	<!--environments用来配置数据库的环境，可以配置多个-->
+	<!--default指定默认使用的数据库环境-->
+	<environments default="mysql">
+		<!--配置mysql数据库环境-->
+		<environment id="mysql">
+			<!--transactionManager配置事务管理器管理事务-->
+			<!--type指定事务管理器的类型,这里指定JDBC类型-->
+			<transactionManager type="JDBC"/>
+			<!--datasource指定数据源，就是连接数据库的信息-->
+			<!--type指定数据源的类型，这里指定类型为连接池-POOLED-->
+			<!--数据库连接池：是指事先准备好n个连接，要使用的时候从里面拿一个，用完再放进去，用来提高操作数据库性能的-->
+			<dataSource type="POOLED">
+				<!--driver指定数据库驱动,value属性指定值-->
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<!--url指定url-->
+				<property name="url" value="jdbc:mysql://localhost:3306/t15"/>
+				<!--username指定用户名-->
+				<property name="username" value="root"/>
+				<!--password指定密码-->
+				<property name="password" value=""/>
+			</dataSource>
+		</environment>
+
+		<environment id="oracle">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL"/>
+				<property name="username" value="scott"/>
+				<property name="password" value="tiger"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+
+	<mappers>
+		<mapper resource="mappers/CityMapper.xml"></mapper>
+	</mappers>
+
+</configuration>

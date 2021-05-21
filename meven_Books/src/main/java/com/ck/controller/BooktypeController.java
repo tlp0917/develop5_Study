@@ -15,6 +15,8 @@ public class BooktypeController {
     private IBooktypeService booktypeService;
     @RequestMapping("querytype")
     public String queryType(ModelMap map){
+        System.out.println("hhhhhhhhh");
+        System.out.println("123456");
         List<Booktype> booktypeList = booktypeService.queryBooktype();
         System.out.println(booktypeList);
         map.put("typelist",booktypeList);

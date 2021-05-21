@@ -1,6 +1,6 @@
-package com.ck.entity.entity.dao;
+package com.ck.dao;
 
-import com.ck.entity.entity.entity.Booktype;
+import com.ck.entity.Booktype;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -12,10 +12,6 @@ public interface IBooktypeDao {
 
     @Select("select * from booktype2 where btid=#{0}")
     public Booktype queryBooktypeByid(int btid);
-
-
-
-
-
-
 }
+
+

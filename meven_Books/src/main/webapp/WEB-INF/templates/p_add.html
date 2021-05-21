@@ -66,7 +66,7 @@
                         <tr>
                             <th width="120"><i class="require-red">*</i>类型：</th>
                             <td>
-                                <select id="catid" class="required" name="booktype.btid">
+                                <select id="catid" class="required" name="btid">
                                     <option value="18" selected>请选择</option>
                                     <option value="19" th:each="t:${typelist}" th:text="${t.btname}" th:value="${t.btid}">运动健身</option>
                                     <option value="20" th:remove="all">旅游</option>
@@ -87,7 +87,7 @@
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>图片：</th>
-                            <td><input id="" type="file" name="imgurl"></td>
+                            <td><input id="" type="file" name="file"></td>
                         </tr>
                         <tr>
                             <th>状态：</th>

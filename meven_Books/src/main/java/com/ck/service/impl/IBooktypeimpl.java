@@ -1,8 +1,8 @@
-package com.ck.entity.entity.service.impl;
+package com.ck.service.impl;
 
-import com.ck.entity.entity.dao.IBooktypeDao;
-import com.ck.entity.entity.entity.Booktype;
-import com.ck.entity.entity.service.IBooktypeService;
+import com.ck.dao.IBooktypeDao;
+import com.ck.entity.Booktype;
+import com.ck.service.IBooktypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,7 @@ public class IBooktypeimpl implements IBooktypeService {
     private IBooktypeDao iBooktypeDao;
     @Override
     public List<Booktype> queryBooktype() {
+
         return iBooktypeDao.queryBooktype();
     }
 

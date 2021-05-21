@@ -1,7 +1,7 @@
-package com.ck.entity.controller;
+package com.ck.controller;
 
-import com.ck.entity.entity.entity.Booktype;
-import com.ck.entity.entity.service.IBooktypeService;
+import com.ck.entity.Booktype;
+import com.ck.service.IBooktypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,3 +26,4 @@ public class BooktypeController {
         return "p_list";
     }
 }
+

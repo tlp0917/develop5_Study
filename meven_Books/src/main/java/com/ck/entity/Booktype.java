@@ -1,4 +1,4 @@
-package com.ck.entity.entity.entity;
+package com.ck.entity;
 
 import java.util.List;
 
@@ -50,3 +50,5 @@ public class Booktype {
                 '}';
     }
 }
+
+

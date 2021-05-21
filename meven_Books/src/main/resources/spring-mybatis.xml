@@ -45,6 +45,6 @@
 	原理：aop、动态代理-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--basePackage指定要扫描的包-->
-		<property name="basePackage" value="com.ck.service"/>
+		<property name="basePackage" value="com.ck.dao"/>
 	</bean>
 </beans>

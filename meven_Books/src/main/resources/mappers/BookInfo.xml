@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace指定命名空间,一定要指定-->
 <!--namespace用来引用和dao的映射关系-->
-<mapper namespace="com.ck.entity.entity.dao.IBookInfoDao">
-    <resultMap id="selectBookmapper" type="com.ck.entity.entity.entity.BookInfo">
+<mapper namespace="com.ck.dao.IBookInfoDao">
+    <resultMap id="selectBookmapper" type="com.ck.entity.BookInfo">
          <association property="booktype"
-         column="btid" select="com.ck.entity.entity.dao.IBooktypeDao.queryBooktypeByid">
+         column="btid" select="com.ck.dao.IBooktypeDao.queryBooktypeByid">
          </association>
     </resultMap>
     <select id="queryBookInfo" resultMap="selectBookmapper">
@@ -19,5 +19,12 @@
       </if>
       </where>
     </select>
+
+    <delete id="DeleteBookInfo">
+        delete from bookinfo2 where bid in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

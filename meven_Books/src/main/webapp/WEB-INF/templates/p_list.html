@@ -7,15 +7,16 @@
     <link rel="stylesheet" type="text/css" href="css/common.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script type="text/javascript" src="js/libs/modernizr.min.js"></script>
-
+    <script type="text/javascript" src="js/libs/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         function showPic(e, sUrl) {
             var x, y;
             x = e.clientX;
             y = e.clientY;
+
             document.getElementById("Layer1").style.left = x + 2 + 'px';
             document.getElementById("Layer1").style.top = y + 2 + 'px';
-            document.getElementById("Layer1").innerHTML = "<img border='0' src=\"" + sUrl + "\">";
+            document.getElementById("Layer1").innerHTML = "<img border='0' src=images/book_img/" + sUrl + ">";
             document.getElementById("Layer1").style.display = "";
         }
         function hiddenPic() {
@@ -23,7 +24,52 @@
             document.getElementById("Layer1").style.display = "none";
         }
     </script>
+
+    <script type="text/javascript">
+            function ajaxDelete(id){
+                var yesOrNo=window.confirm("是否确定删除?");
+                if(yesOrNo){
+                    $.ajax({
+                        url:'DeleteBook?bid='+id,
+                        success:function(data){
+                            if(data==1){
+                                $("#"+id).remove();
+                            }else{
+                                alert("删除失败！");
+                            }
+                        }
+                    });
+                }
+            }
+
+
+            function ajaxDeleteids() {
+                if(typeof($(":checkbox:checked").val()) == "undefined") {
+                    alert("请选中再批量删除");
+                } else if (confirm("是否批量删除?")) {
+                    let bid = "";
+                    $(":checkbox:checked").each(function () {
+
+                        bid += "bid="+$(this).val() + "&";
+                        alert(bid);
+                    })
+                    bid = bid.substring(0, bid.length - 1);
+                    $.ajax({
+                        url:"DeleteBook?"+bid,
+                        success: function (data) {
+                            if (data > 0) {
+                                location.reload();
+                            }
+                        }
+
+                    });
+                }
+            }
+        // ajax做删除
+
+    </script>
 </head>
+
 <body>
 <div class="topbar-wrap white">
     <!--<div class="topbar-inner clearfix">-->
@@ -94,7 +140,7 @@
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a id="batchDel" href="javascript:void(0)"><i
+                        <a id="batchDel" href="javascript:ajaxDeleteids()"><i
                                 class="icon-font"></i>批量删除</a>
                     </div>
                 </div>
@@ -114,15 +160,15 @@
                             <th>操作</th>
                         </tr>
                         <tr th:each="b:${infoList}">
-                            <td class="tc"><input name="id[]" value="" type="checkbox"></td>
+                            <td class="tc"><input name="id[]" th:value="${b.bid}" type="checkbox"></td>
                             <td th:text="${b.bid}">1</td>
-                            <td th:text="${b.bname}" onmouseout="hiddenPic();" onmousemove="showPic(event,'[[${b.imgurl}]]');">中国传统人生智慧1</td>
+                            <td th:text="${b.bname}" onmouseout="hiddenPic();"th:onmousemove="showPic(event,[[${b.imgurl}]])">中国传统人生智慧1</td>
                             <td th:text="${b.price}">￥100</td>
                             <td th:text="${b.booktype.btname}">经济</td>
                             <td th:text="${b.dtime}">2014-03-15 21:11:01</td>
                             <td th:if="${b.state==1}" >已审核</td>
-                            <td th:if="${b.state==0}">未审核</td>
-                            <td><a href="#">[删除]</a> <a href="#">[修改]</a></td>
+                            <td th:if="${b.state==0}" ><span style="color:red">未审核</span></td>
+                            <td><a th:href="'javascript:ajaxDelete('+${b.bid}+')'">[删除]</a> <a href="#">[修改]</a></td>
                         </tr>
                         <tr th:remove="all">
                             <td class="tc"><input name="id[]" value="" type="checkbox"></td>
@@ -132,7 +178,7 @@
                             <td>经济</td>
                             <td>2014-03-15 21:11:01</td>
                             <td><span style="color: red;">未审核</span></td>
-                            <td><a href="#">[删除]</a> <a href="#">[修改]</a> <a href="#">[审核]</a>
+                            <td><a href="">[删除]</a> <a href="#">[修改]</a> <a href="#">[审核]</a>
                             </td>
                         </tr>
                         <tr th:remove="all">

@@ -1,9 +1,9 @@
-package com.ck.entity.entity.entity;
+package com.ck.entity;
 
 import java.util.Date;
 
 public class BookInfo {
-   private int bid;
+    private int bid;
     private String bname ;
     private int price ;
     private int btid ;
@@ -105,3 +105,4 @@ public class BookInfo {
                 '}';
     }
 }
+
